@@ -64,15 +64,16 @@ final class BEMPathManager: NSObject {
      */
     func pathForCheckMark() -> UIBezierPath {
         let checkMarkPath = UIBezierPath()
-        
-        checkMarkPath.move(to: CGPoint(x: size / 3.1578, y: size / 2))
-        checkMarkPath.addLine(to: CGPoint(x: size / 2.0618, y: size / 1.57894))
-        checkMarkPath.addLine(to: CGPoint(x: size / 1.3953, y: size / 2.7272))
-        
+                
         if boxType == .square {
             // If we use a square box, the check mark should be a little bit bigger
+            checkMarkPath.move(to: CGPoint(x: size / 3.1578, y: size / 2))
+            checkMarkPath.addLine(to: CGPoint(x: size / 2.0618, y: size / 1.57894))
+            checkMarkPath.addLine(to: CGPoint(x: size / 1.3953, y: size / 2.7272))
             checkMarkPath.apply(CGAffineTransform(scaleX: 1.5, y: 1.5))
             checkMarkPath.apply(CGAffineTransform(translationX: -size / 4, y: -size / 4))
+        } else {
+            checkMarkPath.addArc(withCenter: CGPoint(x: size / 2, y: size / 2), radius: size / 4, startAngle: 0, endAngle: 360, clockwise: true)
         }
         
         return checkMarkPath
@@ -84,16 +85,14 @@ final class BEMPathManager: NSObject {
     func pathForLongCheckMark() -> UIBezierPath {
         let checkMarkPath = UIBezierPath()
         
-        checkMarkPath.move(to: CGPoint(x: size / 3.1578, y: size / 2))
-        checkMarkPath.addLine(to: CGPoint(x: size / 2.0618, y: size / 1.57894))
-        
         if boxType == .square {
-            // If we use a square box, the check mark should be a little bit bigger
+            checkMarkPath.move(to: CGPoint(x: size / 3.1578, y: size / 2))
+            checkMarkPath.addLine(to: CGPoint(x: size / 2.0618, y: size / 1.57894))
             checkMarkPath.addLine(to: CGPoint(x: size / 1.2053, y: size / 4.5272))
             checkMarkPath.apply(CGAffineTransform(scaleX: 1.5, y: 1.5))
             checkMarkPath.apply(CGAffineTransform(translationX: -size / 4, y: -size / 4))
         } else {
-            checkMarkPath.addLine(to: CGPoint(x: size / 1.1553, y: size / 5.9272))
+            checkMarkPath.addArc(withCenter: CGPoint(x: size / 2, y: size / 2), radius: size / 4, startAngle: 0, endAngle: 360, clockwise: true)
         }
         
         return checkMarkPath
@@ -105,9 +104,14 @@ final class BEMPathManager: NSObject {
      */
     func pathForFlatCheckMark() -> UIBezierPath {
         let flatCheckMarkPath = UIBezierPath()
-        flatCheckMarkPath.move(to: CGPoint(x: size / 4, y: size / 2))
-        flatCheckMarkPath.addLine(to: CGPoint(x: size / 2, y: size / 2))
-        flatCheckMarkPath.addLine(to: CGPoint(x: size / 1.2, y: size / 2))
+        
+        if boxType == .square {
+            flatCheckMarkPath.move(to: CGPoint(x: size / 4, y: size / 2))
+            flatCheckMarkPath.addLine(to: CGPoint(x: size / 2, y: size / 2))
+            flatCheckMarkPath.addLine(to: CGPoint(x: size / 1.2, y: size / 2))
+        } else {
+            flatCheckMarkPath.addArc(withCenter: CGPoint(x: size / 2, y: size / 2), radius: size / 2, startAngle: 0, endAngle: 360, clockwise: true)
+        }
         
         return flatCheckMarkPath
     }

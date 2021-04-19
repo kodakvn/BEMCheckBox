@@ -363,6 +363,11 @@ public class BEMCheckBox: UIControl, CAAnimationDelegate {
         checkMarkLayer?.lineWidth = lineWidth
         checkMarkLayer?.fillColor = UIColor.clear.cgColor
         
+        if boxType == .circle {
+            checkMarkLayer?.strokeColor = onCheckColor?.cgColor
+            checkMarkLayer?.fillColor = onCheckColor?.cgColor
+        }
+        
         layer.addSublayer(checkMarkLayer!)
     }
 
